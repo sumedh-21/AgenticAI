@@ -1,0 +1,64 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directories
+.venv/
+__pycache__/
+.DS_Store
+*.pyc
+*.pyo
+
+venv/
+env/
+.venv/
+ENV/
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+*.env
+*.env.*
+
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Cache directories
+.cache/
+*.pytest_cache/
+
+# Generated files
+*.html
+*.xml
+*.csv
+*.db
+
+# Deployment files
+*.pid
+*.sock
+
+# FastAPI/UVicorn temp files
+*.db-journal
+debug.log
+
+# Pip and dependency files
+pip-wheel-metadata/
+__pycache__/
