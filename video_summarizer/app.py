@@ -31,16 +31,7 @@ st.set_page_config(
 st.title("Phidata Video Summarizer AI Agent")
 st.header("Powered by Gemini 2.0 Flash exp")
 
-# @st.cache_resource
-# def initialize_agent():
-#     return agent(
-#         name="Video Summarizer Agent",
-#         model=Gemini(id="gemini-2.0-flash-exp"),
-#         tools=[DuckDuckGo()],
-#         markdown=True
-#     )
-
-# multimodal_agent = initialize_agent()
+@st.cache_resource
 def initialize_agent():
     return Agent(
         name="Video Summarizer Agent",
@@ -48,7 +39,6 @@ def initialize_agent():
         tools=[DuckDuckGo()],
         markdown=True
     )
-
 try:
     multimodal_agent = initialize_agent()
 except Exception as e:
@@ -61,46 +51,6 @@ uploaded_file = st.file_uploader(
     help="Upload a video for AI analysis. Supported video formats: mp4, mov, avi, mkv"
 )
 
-# if uploaded_file is not None:
-#     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-#         temp_file.write(uploaded_file.read())
-#         video_path = temp_file.name
-
-#     st.video(video_path, format="video/mp4", start_time=0)
-
-#     user_query = st.text_area(
-#         "What insights are you seeking from this video summarizer?",
-#         placeholder="Ask anything about the video content. The AI agent will analyze and gather additional insights about the video.",
-#         help="Provide specific questions or insights you want from the video."
-#     )
-
-#     if st.button("Analyze video", key="analyze_video_button"):
-#         if not user_query:
-#             st.warning("Please provide a question or insights to analyze the video.")
-#         else:
-#             try:
-#                 with st.spinner("Processing video and gathering insights..."):
-#                     processed_video = upload_file(video_path)
-#                     while processed_video.state.name == "PROCESSING":
-#                         time.sleep(1)
-#                         processed_video = get_file(processed_video.name)
-
-#                     analysis_prompt = (
-#                         f"Analyze the uploaded video content and summarize for content and context.\n"
-#                         f"Respond to the following query using video insights and supplementary web research results: {user_query}\n\n"
-#                         f"Provide a detailed, user-friendly, and actionable response."
-#                     )
-#                     response = multimodal_agent.run(analysis_prompt, videos=[processed_video])
-
-#                     st.subheader("Video Summarizer AI Agent Response")
-#                     st.markdown(response.content)
-
-#             except Exception as e:
-#                 st.error(f"Error processing video: {e}")
-#             finally:
-#                 Path(video_path).unlink(missing_ok=True)
-#     else:
-#         st.info("Upload a video file to begin analysis.")
 if uploaded_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
         temp_file.write(uploaded_file.read())
